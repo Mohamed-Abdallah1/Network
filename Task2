@@ -1,0 +1,133 @@
+Generics mean parameterized types. The idea is to allow type (Integer, String, … etc, and user-defined types) to be a parameter to methods, classes, and interfaces. Using Generics, it is possible to create classes that work with different data types. 
+An entity such as class, interface, or method that operates on a parameterized type is called a generic entity.
+Code Simple:
+// A Simple Java program to show working of user defined
+// Generic classes
+   
+// We use < > to specify Parameter type
+class Test<T>
+{
+    // An object of type T is declared
+    T obj;
+    Test(T obj) {  this.obj = obj;  }  // constructor
+    public T getObject()  { return this.obj; }
+}
+   
+// Driver class to test above
+class Main
+{
+    public static void main (String[] args)
+    {
+        // instance of Integer type
+        Test <Integer> iObj = new Test<Integer>(15);
+        System.out.println(iObj.getObject());
+   
+        // instance of String type
+        Test <String> sObj =
+                          new Test<String>("GeeksForGeeks");
+        System.out.println(sObj.getObject());
+    }
+}
+
+
+Wildcards in Java
+The question mark (?) is known as the wildcard in generic programming . It represents an unknown type. The wildcard can be used in a variety of situations such as the type of a parameter, field, or local variable; sometimes as a return type. Unlike arrays, different instantiations of a generic type are not compatible with each other, not even explicitly. This incompatibility may be softened by the wildcard if ? is used as an actual type parameter.
+
+Types of wildcards in Java:
+
+Attention reader! Don’t stop learning now. Get hold of all the important Java Foundation and Collections concepts with the Fundamentals of Java and Java Collections Course at a student-friendly price and become industry ready. To complete your preparation from learning a language to DS Algo and many more,  please refer Complete Interview Preparation Course.
+
+Upper Bounded Wildcards: These wildcards can be used when you want to relax the restrictions on a variable. For example, say you want to write a method that works on List < integer >, List < double >, and List < number > , you can do this  using an upper bounded wildcard.
+To declare an upper-bounded wildcard, use the wildcard character (‘?’), followed by the extends keyword, followed by its upper bound.
+public static void add(List<? extends Number> list)
+Implementation:
+//Java program to demonstrate Upper Bounded Wildcards
+import java.util.Arrays;
+import java.util.List;
+  
+class WildcardDemo
+{
+    public static void main(String[] args)
+    {
+          
+        //Upper Bounded Integer List
+        List<Integer> list1= Arrays.asList(4,5,6,7);
+          
+        //printing the sum of elements in list
+        System.out.println("Total sum is:"+sum(list1));
+  
+        //Double list
+        List<Double> list2=Arrays.asList(4.1,5.1,6.1);
+          
+        //printing the sum of elements in list
+        System.out.print("Total sum is:"+sum(list2));
+    }
+  
+    private static double sum(List<? extends Number> list) 
+    {
+        double sum=0.0;
+        for (Number i: list)
+        {
+            sum+=i.doubleValue();
+        }
+  
+        return sum;
+    }
+}
+
+What is the difference between array and enum in java ?
+
+Array is a variable that can contain multiple elements with index starting from 0 whereas enum is an user defined datatype that contains a list of members for which an integer constant is assigned starting from 0. in case of enum the numbers starting from 0 are not indexes whereas in case of an array they are indexes. Also in case of enum you can assign your own constant values to the members that may or may not start from 0 and may or may not be in a sequence.
+An Enum is basically a group of named constants. It is an alternative to numbered flag parameters. (It also doesn't have to be numbered from zero, you can specify the numbering.)
+
+An Enum could be days of the week for example. A Enum could departments in a company: eg SALES, BILLING, HR ...
+
+A array is a sequence of memory locations. It is a collection. Each element in that collection is indexed by a number. So using that number you can retrieve the value stored at that location. Much like the page number in a book lets you look up the content of that page, the index on an array lets you look up the value stored at that location.
+
+For example, if your company had numbered physical mail boxes for each department (starting from zero): and you were creating some very simple software to let users log in to check how many letters they had uncollected, you might choose to store them in an Array of Ints. Where the index is the mail box number, and the value is the number of letters in the box.
+
+Then for ease of programming, you might choose define the departments as Enums (as described before) such that you could index of department name. But that would be getting more advanced.
+
+
+
+Difference between Unicast, Broadcast & Multicast
+Data is transported over a network by three simple methods i.e. Unicast, Broadcast, and Multicast. So let’s begin to summarize the difference between these three:
+
+Unicast: from one source to one destination i.e. One-to-One
+Broadcast: from one source to all possible destinations i.e. One-to-All
+Multicast: from one source to multiple destinations stating an interest in receiving the traffic i.e. One-to-Many
+Note: There is no separate classification for Many-to-Many applications, for example, video conferencing or online gaming, where multiple sources for the same receiver and where receivers often are double as sources. This service model works on the basis of one-to-many multicast and for that reason requires no unique protocol. The original multicast design i.e. RFC 1112, supports both the ASM (any-source-multicast) based on a many-to-many service model and the SSM (source-specific multicast) based on a one-to-many model.
+Unicast: traffic, many streams of IP packets that move across networks flow from a single point, such as a website server, to a single endpoint such as a client PC. This is the most common form of information transference on networks.
+
+Broadcast: Here, traffic streams from a single point to all possible endpoints within reach on the network, which is generally a LAN. This is the easiest technique to ensure traffic reaches its destinations.
+
+This mode is mainly utilized by television networks for video and audio distribution. Even if the television network is a cable television (CATV) system, the source signal reaches all possible destinations, which is the key reason that some channels’ content is scrambled. Broadcasting is not practicable on the public Internet due to the massive amount of unnecessary data that would continually reach each user’s device, the complications and impact of scrambling, and related privacy issues.
+
+Multicast: In this method traffic recline between the boundaries of unicast (one point to one destination) and broadcast (one point to all destinations). And multicast is a “one source to many destinations” way of traffic distribution, which means that only the destinations that openly point to their requisite to accept the data from a specific source to receive the traffic stream.
+
+On an IP network, destinations (i.e. clients) do not regularly communicate straight to sources (i.e. servers), because the routers between source and destination must be able to regulate the topology of the network from unicast or multicast side to avoid disordered routing traffic. Multicast routers replicate packets received on one input interface and send the replicas out on multiple output interfaces.
+
+In the multicast model, the source and destinations are almost every time “Host” and not “Routers”. The multicast traffic is spread by multicast routers across the network from source to destination. The multicast routers must find multicast sources on the network, send out copies of packets on a number of interfaces, avoid loops, connect interested destinations with accurate sources and keep the flow of unsolicited packets to a minimum. The standard protocols of multicast routing provide most of these facilities, but some router architecture cannot send multiple copies of packets and so do not support direct multicasting.
+
+So what is the difference between Multicast and Unicast?
+There are two central methods that Windows Media servers use to send data to Windows Media Player clients i.e. Unicast and Multicast…
+
+Multicast or Unicast can be used for broadcasting live video or audio. Your network setting by default determines who your clients are and what sort of broadcast you need to prefer.
+
+Unicast
+1. Traffic is sent from one host to another. A replica of each packet in the data stream goes to every host that requests it.
+
+2. The implementation of unicast applications is a bit easy as they use well-established IP protocols; however, they are particularly incompetent when there is a need for many-to-many communications. In the meantime, all packets in the data stream must be sent to every host requesting access to the data stream. However, this type of transmission is ineffective in terms of both network and server resources as it equally presents obvious scalability issues.
+
+3. This is a one-to-one connection between the client and the server. Unicast uses IP provision techniques such as TCP (transmission control protocol) and UDP (user datagram protocol), which are session-based protocols. Once a Windows media player client connects via unicast to a Windows media server that client gets a straight connection to the server. Every unicast client that connects to the server takes up extra bandwidth. For instance, if you have 10 clients all performing 100 Kbps (kilobits per second) streams, it means those clients taking up 1,000 Kbps. But you have a single client using the 100 Kbps stream, only 100 Kbps is being used.
+
+Multicast
+Multicast lets server’s direct single copies of data streams that are then simulated and routed to hosts that request it.
+
+Hence, rather than sending thousands of copies of a streaming event, the server instead streams a single flow that is then directed by routers on the network to the hosts that have specified that they need to get the stream. This removes the requirement to send redundant traffic over the network and also be likely to reduce CPU load on systems, which are not using the multicast system, yielding important enhancement to efficiency for both server and network.
+
+Multicast is true broadcast?
+The multicast source depends on multicast-enabled routers to forward the packets to all clients’ subnets that have clients listening. However, there is no direct affiliation between clients and Windows media servers. The Windows media server creates a “.nsc” (NetShow channel) file when the multicast station is first formed. Usually, the .nsc file is sent to the client from a web server. This file holds data that the Windows media player requires to listen for the multicast.  This is quite the same as fine-tuning a station on a radio. Every client which eavesdrops on the multicast includes no extra overhead on the server. In fact, the server sends out only a single stream per multicast station. The equal load is experienced on the server whether only a single client or multiple clients are listening.
+
+Important note
+Multicast on the Internet is usually not a concrete solution because only small sections of the Internet are enabled with Multicast. On the other hand, incorporate environments where all routers are multicast-enabled can save quite a bit of bandwidth.
